@@ -1,0 +1,6 @@
+/openapi.iml
+.idea/**
+**/target/**
+*.jar
+gwt-unitCache/
+viewer/
