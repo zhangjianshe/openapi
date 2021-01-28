@@ -6,13 +6,33 @@
 
     <groupId>cn.mapway</groupId>
     <artifactId>openapi</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <modules>
         <module>openapi-view</module>
         <module>openapi-ui</module>
         <module>openapi-spring-boot-starter</module>
     </modules>
     <packaging>pom</packaging>
+    <name>openapi</name>
+    <description>ui for oas3</description>
+    <url>http://openapi.mapway.cn</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/zhangjianshe/openapi.git</url>
+    </scm>
+    <developers>
+        <developer>
+            <name>zhangjianshe</name>
+            <email>zhangjianshe@gmail.com</email>
+        </developer>
+    </developers>
+
     <properties>
 
         <gpg.keyname>1F8B2CB0A3E469D2</gpg.keyname>
@@ -54,7 +74,6 @@
                             <serverId>sonatype_oss</serverId>
                             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                         </configuration>
-
                     </plugin>
                     <plugin>
                         <artifactId>maven-deploy-plugin</artifactId>

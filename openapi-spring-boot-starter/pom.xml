@@ -5,11 +5,30 @@
     <parent>
         <artifactId>openapi</artifactId>
         <groupId>cn.mapway</groupId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>openapi-spring-boot-starter</artifactId>
+    <name>openapi-spring-boot-starter</name>
+    <description>ui for oas3</description>
+    <url>http://openapi.mapway.cn</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/zhangjianshe/openapi.git</url>
+    </scm>
+    <developers>
+        <developer>
+            <name>zhangjianshe</name>
+            <email>zhangjianshe@gmail.com</email>
+        </developer>
+    </developers>
 
     <dependencies>
         <dependency>
@@ -20,7 +39,7 @@
         <dependency>
             <groupId>cn.mapway</groupId>
             <artifactId>openapi-ui</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
     </dependencies>
 </project>
