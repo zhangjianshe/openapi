@@ -1,0 +1,89 @@
+body {
+    background-color: #3C3F41;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: small;
+    margin: 8px;
+}
+
+.gwt-TreeItem .tree-text {
+
+    cursor: default;
+
+}
+
+.gwt-TreeItem-selected .tree-text {
+    display: block;
+}
+
+.gwt-TreeItem .tree-group-text {
+
+    cursor: default;
+
+}
+
+.gwt-TreeItem-selected .tree-group-text {
+
+}
+
+.list-table {
+    border: solid 0px white;
+    mso-cellspacing: 8px;
+}
+
+.col-desc {
+    color: gray;
+}
+
+.col-path {
+    color: darkseagreen;
+}
+
+.row0 {
+    background-color: #444444;
+}
+
+.row1 {
+    background-color: #3C3F41;
+}
+
+.deprecated {
+    text-decoration: overline;
+}
+
+.my-link {
+    color: #5F96BA;
+    cursor: default;
+}
+
+.my-link:HOVER {
+    color: skyblue;
+    text-decoration: underline;
+}
+
+.summary {
+    color: darkseagreen;
+}
+
+.variable {
+    color: #9275A9;
+}
+
+.keyword {
+    color: khaki;
+}
+
+.my-textbox {
+    background-color: #808080;
+    border: solid 1px #555555;
+    height: 26px;
+    appearance: none;
+    -ms-ime-mode: inactive;
+    ime-mode: inactive;
+}
+
+.my-textbox:focus {
+    border: solid 1px #b0b0b0;
+    outline: none;
+    box-shadow: none;
+}

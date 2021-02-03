@@ -3,4 +3,4 @@
 **/target/**
 *.jar
 gwt-unitCache/
-viewer/
+jsviewer/

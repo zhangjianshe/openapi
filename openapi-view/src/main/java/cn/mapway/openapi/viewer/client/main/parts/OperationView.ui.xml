@@ -1,0 +1,102 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+>
+    <ui:style>
+        .test {
+            padding: 10px;
+        }
+
+        .stitle {
+            font-weight: bold;
+            font-size: large;
+        }
+
+        .ull {
+            padding-top: 5px;
+            color: skyblue;
+        }
+
+        .desc {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: darkseagreen;
+        }
+
+        .allSchema {
+            margin-top: 5px;
+            border-left: solid 5px gray;
+            padding-left: 5px;
+        }
+
+        .reqp {
+            margin-top: 5px;
+            border-left: solid 5px sandybrown;
+            padding-left: 5px;
+        }
+
+        .incolor {
+            color: sandybrown;
+            font-size: smaller;
+        }
+
+        .inbg {
+            background-color: sandybrown;
+        }
+
+        .resp {
+            margin-top: 5px;
+            border-left: solid 5px slategray;
+            padding-left: 5px;
+        }
+
+        .outcolor {
+            color: slategray;
+            font-size: smaller;
+        }
+
+        .outbg {
+            background-color: slategray;
+        }
+
+        .box {
+            width: 10px;
+            height: 10px;
+            margin-left: 4px;
+            display: inline-block;
+            overflow: hidden;
+            border: solid 1pt white;
+            vertical-align: middle;
+        }
+    </ui:style>
+    <g:ScrollPanel>
+        <g:HTMLPanel styleName="{style.test}">
+            <g:HorizontalPanel width="100%">
+                <g:Label ui:field="lbTitle" styleName="{style.stitle}"></g:Label>
+
+                <g:cell horizontalAlignment="right">
+                    <g:HorizontalPanel verticalAlignment="middle">
+                        <g:Label styleName="{style.box} {style.inbg}"></g:Label>
+                        <g:Label styleName=" {style.incolor}">输入参数</g:Label>
+                        <g:Label styleName="{style.box} {style.outbg}"></g:Label>
+                        <g:Label styleName="{style.outcolor}">输出参数</g:Label>
+                    </g:HorizontalPanel>
+                </g:cell>
+            </g:HorizontalPanel>
+
+            <g:HorizontalPanel verticalAlignment="middle" spacing="4">
+                <g:Image width="16px" height="16px" ui:field="imgMethod"></g:Image>
+                <g:Label ui:field="lbURL" styleName="{style.ull}"></g:Label>
+            </g:HorizontalPanel>
+
+            <g:HTML ui:field="lbDescription" styleName="{style.desc}"></g:HTML>
+
+            <g:FlexTable ui:field="tableParameters"></g:FlexTable>
+
+            <g:HTMLPanel ui:field="htmlRequest" styleName="{style.reqp} "></g:HTMLPanel>
+            <g:HTMLPanel ui:field="htmlResponse" styleName="{style.resp}"></g:HTMLPanel>
+
+
+            <g:HTMLPanel ui:field="htmlAllSchema" styleName="{style.allSchema}"></g:HTMLPanel>
+        </g:HTMLPanel>
+    </g:ScrollPanel>
+</ui:UiBinder>

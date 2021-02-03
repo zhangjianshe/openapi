@@ -1,0 +1,10 @@
+.body{
+  background-color: #3C3F41;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: small;
+  margin: 8px;
+}
+.link{
+  color: #5F96BA;
+}

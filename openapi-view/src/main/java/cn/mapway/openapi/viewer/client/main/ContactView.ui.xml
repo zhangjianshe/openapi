@@ -1,0 +1,11 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:c="urn:import:cn.mapway.openapi.viewer.client.component">
+
+    <g:HorizontalPanel verticalAlignment="middle" spacing="3">
+        <c:Link ui:field="link"/>
+        <g:Label ui:field="email"/>
+        <c:Link ui:field="license"></c:Link>
+        <c:Link ui:field="term"></c:Link>
+    </g:HorizontalPanel>
+</ui:UiBinder>
