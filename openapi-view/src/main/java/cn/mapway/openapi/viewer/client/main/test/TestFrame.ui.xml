@@ -1,0 +1,63 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+>
+    <ui:style>
+        .top {
+            background-color: #505050;
+            overflow: hidden;
+        }
+
+        .url {
+            color: #5F96BA;
+        }
+
+        .right {
+            border-left: solid 1px #3C3F41;
+        }
+    </ui:style>
+    <g:DockLayoutPanel width="900px" height="500px">
+        <g:north size="40">
+            <g:HorizontalPanel height="35px" width="100%" verticalAlignment="middle" styleName="{style.top}">
+                <g:cell>
+                    <g:HorizontalPanel verticalAlignment="middle" height="35px" spacing="4">
+                        <g:Image ui:field="imgMethod"></g:Image>
+                        <g:Label ui:field="txtUrl" styleName="{style.url}"></g:Label>
+                    </g:HorizontalPanel>
+                </g:cell>
+                <g:cell horizontalAlignment="right">
+                    <g:HorizontalPanel horizontalAlignment="right" spacing="4">
+                        <g:Image ui:field="imgLoadding" visible="false" width="48px"
+                                 height="30px"/>
+                        <g:Button ui:field="btnTest" styleName="btnTest">测试</g:Button>
+                        <g:Button ui:field="btnClose" styleName="btnClose">关闭</g:Button>
+                    </g:HorizontalPanel>
+                </g:cell>
+            </g:HorizontalPanel>
+        </g:north>
+        <g:center>
+            <g:SplitLayoutPanel>
+                <g:west size="430">
+                    <g:DockLayoutPanel>
+                        <g:north size="35">
+                            <g:HorizontalPanel>
+                                <g:Button>路径参数</g:Button>
+                                <g:Button>HTTP头</g:Button>
+                                <g:Button>Body</g:Button>
+                            </g:HorizontalPanel>
+                        </g:north>
+                        <g:center>
+                            <g:ScrollPanel>
+                                <g:TextArea width="100%" height="400px" ui:field="editor"></g:TextArea>
+                            </g:ScrollPanel>
+                        </g:center>
+                    </g:DockLayoutPanel>
+                </g:west>
+                <g:center>
+                    <g:ScrollPanel>
+                        <g:TextArea width="100%" height="400px" ui:field="result"></g:TextArea>
+                    </g:ScrollPanel>
+                </g:center>
+            </g:SplitLayoutPanel>
+        </g:center>
+    </g:DockLayoutPanel>
+</ui:UiBinder>

@@ -2,10 +2,12 @@
         "http://www.gwtproject.org/doctype/2.9.0/gwt-module.dtd">
 <module rename-to="jsviewer">
     <inherits name='com.google.gwt.user.User'/>
-    <inherits name="com.google.gwt.resources.Resources" />
+    <inherits name="com.google.gwt.core.Core"/>
+    <inherits name="com.google.gwt.resources.Resources"/>
     <inherits name="com.google.gwt.json.JSON"/>
+    <inherits name="com.google.gwt.http.HTTP"/>
     <set-configuration-property name="CssResource.enableGss" value="true"/>
-    <set-configuration-property name="CssResource.conversionMode"    value="strict" />
-    <stylesheet src='OpenApiViewer.css' />
+    <set-configuration-property name="CssResource.conversionMode" value="strict"/>
+    <stylesheet src='OpenApiViewer.css'/>
     <entry-point class='cn.mapway.openapi.viewer.client.OpenApiViewer'/>
 </module>

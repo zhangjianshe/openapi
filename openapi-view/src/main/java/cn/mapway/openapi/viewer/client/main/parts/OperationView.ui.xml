@@ -88,11 +88,12 @@
             <g:HorizontalPanel width="100%">
                 <g:Label ui:field="lbTitle" styleName="{style.stitle}"></g:Label>
                 <g:cell horizontalAlignment="right">
-                    <g:HorizontalPanel verticalAlignment="middle">
+                    <g:HorizontalPanel verticalAlignment="middle" spacing="3">
                         <g:Label styleName="{style.box} {style.inbg}"></g:Label>
                         <g:Label styleName=" {style.incolor}">输入参数</g:Label>
                         <g:Label styleName="{style.box} {style.outbg}"></g:Label>
                         <g:Label styleName="{style.outcolor}">输出参数</g:Label>
+                        <g:Button ui:field="testButton" styleName="btnTest">测试</g:Button>
                     </g:HorizontalPanel>
                 </g:cell>
             </g:HorizontalPanel>

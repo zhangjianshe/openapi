@@ -8,9 +8,15 @@ import cn.mapway.openapi.viewer.client.resource.MainResource;
 import cn.mapway.openapi.viewer.client.specification.*;
 import cn.mapway.openapi.viewer.client.util.SchemeUtil;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.logical.shared.HasSelectionHandlers;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
 
 import java.util.ArrayList;
@@ -23,7 +29,7 @@ import java.util.Map;
  *
  * @author zhangjianshe@gmail.com
  */
-public class OperationView extends Composite {
+public class OperationView extends Composite implements HasSelectionHandlers<Operation> {
     private static OperationViewUiBinder ourUiBinder = GWT.create(OperationViewUiBinder.class);
     @UiField
     Label lbTitle;
@@ -45,6 +51,10 @@ public class OperationView extends Composite {
     JsonPanel jsonInput;
     @UiField
     JsonPanel jsonOutput;
+    @UiField
+    Button testButton;
+
+    Operation mOperation;
 
     public OperationView() {
         initWidget(ourUiBinder.createAndBindUi(this));
@@ -53,6 +63,7 @@ public class OperationView extends Composite {
     }
 
     public void parse(Operation operation) {
+        mOperation = operation;
         lbTitle.setText(operation.summary);
 
         if ("o".equals(operation.opType)) {
@@ -212,6 +223,16 @@ public class OperationView extends Composite {
             index++;
         }
         return row;
+    }
+
+    @UiHandler("testButton")
+    public void testButtonClick(ClickEvent event) {
+        SelectionEvent.fire(this, mOperation);
+    }
+
+    @Override
+    public HandlerRegistration addSelectionHandler(SelectionHandler<Operation> handler) {
+        return addHandler(handler, SelectionEvent.getType());
     }
 
 

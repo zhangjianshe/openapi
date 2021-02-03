@@ -6,6 +6,6 @@ import java.util.Date;
 
 @Data
 public class EastTaskResponse {
-    String name;
-    Date deadline;
+    String name = "adssda";
+    Date deadline = new Date();
 }

@@ -2,6 +2,8 @@ package cn.mapway.openapi.viewer.client.resource;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
+import com.google.gwt.resources.client.ClientBundle.Source;
+import com.google.gwt.resources.client.DataResource;
 import com.google.gwt.resources.client.ImageResource;
 
 /**
@@ -36,4 +38,7 @@ public interface MainResource extends ClientBundle {
 
     @Source("image/o.png")
     ImageResource o();
+
+    @Source("image/loadding.gif")
+    ImageResource loading();
 }

@@ -37,7 +37,7 @@ public class OpenApiViewer implements EntryPoint {
             if (url != null && url.length() > 0) {
                 fetchUrl = url;
             }
-            Https.fetchString(fetchUrl + "../v3/api-docs", "", "get", new IOnData<String>() {
+            Https.fetchString(fetchUrl + "../v3/api-docs", "", "", "get", new IOnData<String>() {
                 @Override
                 public void onError(String url, String error) {
                     GWT.log(url + " " + error);

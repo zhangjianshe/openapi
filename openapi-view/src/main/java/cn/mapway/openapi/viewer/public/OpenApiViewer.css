@@ -87,3 +87,56 @@ body {
     outline: none;
     box-shadow: none;
 }
+
+.gwt-DialogBox {
+    border: solid 1px #555555;;
+}
+
+.gwt-DialogBox .Caption {
+    background-color: #3C3F41;
+    padding: 4px 4px 4px 8px;
+    cursor: default;
+    color: white;
+    font-weight: bold;
+    height: 28px;
+    line-height: 28px;
+}
+
+.gwt-DialogBox .dialogContent {
+    padding: 0px;
+    margin: 0px;
+}
+
+.gwt-DialogBox .dialogMiddleCenter {
+    background: #505050;
+}
+
+.btnTest {
+    border-radius: 5px;
+    color: white;
+    background-color: #ee6a5e;
+    padding: 2px 10px 2px 10px;
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+    border: solid 1pt #555555;
+}
+
+.btnTest:HOVER {
+    background-color: #f0877d;
+}
+
+.btnClose {
+    border-radius: 5px;
+    color: white;
+    background-color: #58b882;
+    padding: 2px 10px 2px 10px;
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+    border: solid 1pt #555555;
+}
+
+.btnClose:HOVER {
+    background-color: #78c59a;
+}

@@ -5,6 +5,7 @@ import cn.mapway.openapi.viewer.client.component.Link;
 import cn.mapway.openapi.viewer.client.component.TextBoxEx;
 import cn.mapway.openapi.viewer.client.main.parts.OperationList;
 import cn.mapway.openapi.viewer.client.main.parts.OperationView;
+import cn.mapway.openapi.viewer.client.main.test.TestDialogBox;
 import cn.mapway.openapi.viewer.client.specification.*;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.*;
@@ -26,6 +27,14 @@ public class MainFrame extends Composite {
     public static OpenApiDoc mDoc;
     private static MainFrameUiBinder ourUiBinder = GWT.create(MainFrameUiBinder.class);
     private static Server CURRENT_SERVER;
+    TestDialogBox testDialogBox;
+    private final SelectionHandler<Operation> operationViewHandler = new SelectionHandler<Operation>() {
+        @Override
+        public void onSelection(SelectionEvent<Operation> event) {
+            sureTestDialogBox().getTestFrame().parse(event.getSelectedItem());
+            testDialogBox.center();
+        }
+    };
     OperationList operationList;
     OperationView operationView;
     Widget current;
@@ -76,12 +85,13 @@ public class MainFrame extends Composite {
     TextBoxEx txtSearch;
     @UiField
     Link link;
-
     public MainFrame() {
         initWidget(ourUiBinder.createAndBindUi(this));
         apiTree.addSelectionHandler(treeSelectedHandler);
         ddlServers.addChangeHandler(serverChangeHandler);
+
     }
+
 
     public final static Server getCurrentServer() {
         return CURRENT_SERVER;
@@ -89,6 +99,13 @@ public class MainFrame extends Composite {
 
     @JsMethod(namespace = "JSON")
     private static native OpenApiDoc parse(String json);
+
+    private TestDialogBox sureTestDialogBox() {
+        if (testDialogBox == null) {
+            testDialogBox = new TestDialogBox();
+        }
+        return testDialogBox;
+    }
 
     /**
      * 展示操作
@@ -98,6 +115,7 @@ public class MainFrame extends Composite {
     private void sureOperator(Operation operation) {
         if (operationView == null) {
             operationView = new OperationView();
+            operationView.addSelectionHandler(operationViewHandler);
         }
         if (operationView != current) {
             if (current != null) {
