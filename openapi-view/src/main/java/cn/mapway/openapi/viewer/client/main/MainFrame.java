@@ -1,5 +1,7 @@
 package cn.mapway.openapi.viewer.client.main;
 
+import cn.mapway.openapi.viewer.client.OpenApiViewer;
+import cn.mapway.openapi.viewer.client.component.Link;
 import cn.mapway.openapi.viewer.client.component.TextBoxEx;
 import cn.mapway.openapi.viewer.client.main.parts.OperationList;
 import cn.mapway.openapi.viewer.client.main.parts.OperationView;
@@ -11,6 +13,7 @@ import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import jsinterop.annotations.JsMethod;
 
@@ -71,6 +74,8 @@ public class MainFrame extends Composite {
     };
     @UiField
     TextBoxEx txtSearch;
+    @UiField
+    Link link;
 
     public MainFrame() {
         initWidget(ourUiBinder.createAndBindUi(this));
@@ -153,7 +158,13 @@ public class MainFrame extends Composite {
         lbTitle.setText(info.title);
         lbDescription.setText(info.description);
         lbVersion.setText(info.version);
-
+        Window.setTitle(info.title);
+        String dataUrl = OpenApiViewer.getDataUrl();
+        if (dataUrl != null) {
+            link.setHref(dataUrl + "/v3/api-docs");
+        } else {
+            link.setHref("v3/api-docs");
+        }
         CURRENT_SERVER = null;
         if (mDoc.servers != null) {
             for (int i = 0; i < mDoc.servers.length; i++) {
@@ -186,17 +197,13 @@ public class MainFrame extends Composite {
             GWT.log(text);
             filter(text);
 
-        } else if (keyCode == KeyCodes.KEY_LEFT || keyCode == KeyCodes.KEY_RIGHT)
-        {
+        } else if (keyCode == KeyCodes.KEY_LEFT || keyCode == KeyCodes.KEY_RIGHT) {
 
-        }else if( keyCode == KeyCodes.KEY_UP )
-        {
+        } else if (keyCode == KeyCodes.KEY_UP) {
             apiTree.moveUp();
-        }else if(keyCode == KeyCodes.KEY_DOWN)
-        {
+        } else if (keyCode == KeyCodes.KEY_DOWN) {
             apiTree.moveDown();
-        }
-        else {
+        } else {
 
             GWT.log("last " + text);
             filter(text);

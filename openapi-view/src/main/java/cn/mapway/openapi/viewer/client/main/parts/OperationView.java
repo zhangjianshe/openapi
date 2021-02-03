@@ -1,11 +1,14 @@
 package cn.mapway.openapi.viewer.client.main.parts;
 
+import cn.mapway.openapi.viewer.client.component.JsonPanel;
 import cn.mapway.openapi.viewer.client.main.MainFrame;
 import cn.mapway.openapi.viewer.client.main.util.GenTableInfo;
 import cn.mapway.openapi.viewer.client.main.util.TableUtil;
 import cn.mapway.openapi.viewer.client.resource.MainResource;
 import cn.mapway.openapi.viewer.client.specification.*;
+import cn.mapway.openapi.viewer.client.util.SchemeUtil;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.*;
@@ -38,6 +41,10 @@ public class OperationView extends Composite {
     HTMLPanel htmlResponse;
     @UiField
     Image imgMethod;
+    @UiField
+    JsonPanel jsonInput;
+    @UiField
+    JsonPanel jsonOutput;
 
     public OperationView() {
         initWidget(ourUiBinder.createAndBindUi(this));
@@ -79,6 +86,10 @@ public class OperationView extends Composite {
             MediaType mediaType = operation.requestBody.jsonType();
             Schema schema = mediaType.getSchema().resolve();
             htmlRequest.add(TableUtil.rootSchemaToFlexTable(schema, allSchema));
+            JSONValue jsonObject = SchemeUtil.fromSchema(schema);
+            jsonInput.setJson(jsonObject);
+        } else {
+            jsonInput.setString("无需参数");
         }
 
         //输出模型
@@ -88,6 +99,9 @@ public class OperationView extends Composite {
         if (outputMediaType != null) {
             Schema schema = outputMediaType.getSchema().resolve();
             htmlResponse.add(TableUtil.rootSchemaToFlexTable(schema, allSchema));
+            jsonOutput.setJson(SchemeUtil.fromSchema(schema));
+        } else {
+            jsonOutput.setString("好像没有参数返回");
         }
 
 

@@ -6,7 +6,7 @@
 
     <groupId>cn.mapway</groupId>
     <artifactId>openapi</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <modules>
         <module>openapi-view</module>
         <module>openapi-ui</module>
@@ -129,7 +129,7 @@
                                     <goal>sign</goal>
                                 </goals>
                                 <configuration>
-                                    <keyname>${gpg.keyname}</keyname>
+                                    <keyname>${env.GPGKEY}</keyname>
                                 </configuration>
                             </execution>
                         </executions>

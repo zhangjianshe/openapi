@@ -48,7 +48,7 @@
             <g:HTMLPanel styleName="{style.topPanel}">
                 <g:HorizontalPanel verticalAlignment="middle" width="100%" height="45px">
                     <g:HorizontalPanel verticalAlignment="middle">
-                        <g:VerticalPanel styleName="{style.topbox}" spacing="3">
+                        <g:VerticalPanel styleName="{style.topbox}" spacing="1">
                             <g:Label ui:field="lbTitle" styleName="{style.head}">Hello World!</g:Label>
                             <g:Label ui:field="lbDescription" styleName="{style.summary}"></g:Label>
                         </g:VerticalPanel>
@@ -56,7 +56,8 @@
                         <c:TextBoxEx width="150px" ui:field="txtSearch"></c:TextBoxEx>
                     </g:HorizontalPanel>
                     <g:cell horizontalAlignment="right">
-                        <g:HorizontalPanel styleName="{style.boxright}">
+                        <g:HorizontalPanel styleName="{style.boxright}" spacing="3">
+                            <c:Link ui:field="link" target="_blank">数据导出</c:Link>
                             <g:ListBox ui:field="ddlServers"></g:ListBox>
                             <g:Label ui:field="lbVersion"></g:Label>
                         </g:HorizontalPanel>

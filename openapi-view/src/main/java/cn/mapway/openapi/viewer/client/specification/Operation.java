@@ -41,7 +41,26 @@ public abstract class Operation {
     @JsProperty
     public MapObject<Response> responses;
     @JsProperty
+    private MapObject<MapObject<String>> extensions;
+    @JsProperty
     private PathItem pathItem;
+
+    @JsOverlay
+    public final String getAuthor() {
+        String author = "";
+        if (extensions != null) {
+            String[] keys = extensions.keys();
+            for (int i = 0; i < keys.length; i++) {
+                String key = keys[i];
+                MapObject<String> item = extensions.item(key);
+                author = item.item("author");
+                if (author != null) {
+                    break;
+                }
+            }
+        }
+        return author;
+    }
 
     @JsOverlay
     public final void setPathItem(PathItem item) {

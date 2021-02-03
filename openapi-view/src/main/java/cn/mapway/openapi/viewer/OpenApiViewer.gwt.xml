@@ -3,6 +3,7 @@
 <module rename-to="jsviewer">
     <inherits name='com.google.gwt.user.User'/>
     <inherits name="com.google.gwt.resources.Resources" />
+    <inherits name="com.google.gwt.json.JSON"/>
     <set-configuration-property name="CssResource.enableGss" value="true"/>
     <set-configuration-property name="CssResource.conversionMode"    value="strict" />
     <stylesheet src='OpenApiViewer.css' />

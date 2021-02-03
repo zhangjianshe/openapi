@@ -15,11 +15,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 
+@Configuration
 public class ApplicationConfiguration {
     private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<String>(
             Arrays.asList("application/json", "application/xml"));
 
 
+    @Bean
     public Docket apiDocket() {
         return new Docket(DocumentationType.OAS_30)
                 .select()
@@ -34,7 +36,7 @@ public class ApplicationConfiguration {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("家装设计销售-设计")
-                .description("A demo restful webservice project using spring boot")
+                .description("虽然功能很小,但是很实用")
                 .version("1.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")

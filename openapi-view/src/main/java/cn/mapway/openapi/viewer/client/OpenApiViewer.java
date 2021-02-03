@@ -12,6 +12,13 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 public class OpenApiViewer implements EntryPoint {
+    public final native static String getDataUrl()/*-{
+        if ($wnd.dataurl != undefined) {
+            return $wnd.dataurl;
+        }
+        return "";
+    }-*/;
+
     public void onModuleLoad() {
 
 
@@ -25,7 +32,12 @@ public class OpenApiViewer implements EntryPoint {
         root.add(mainFrame);
 
         try {
-            Https.fetchString("http://localhost:8080/v3/api-docs", "", "get", new IOnData<String>() {
+            String url = getDataUrl();
+            String fetchUrl = "";
+            if (url != null && url.length() > 0) {
+                fetchUrl = url;
+            }
+            Https.fetchString(fetchUrl + "v3/api-docs", "", "get", new IOnData<String>() {
                 @Override
                 public void onError(String url, String error) {
                     GWT.log(url + " " + error);

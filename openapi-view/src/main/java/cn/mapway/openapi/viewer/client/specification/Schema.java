@@ -22,7 +22,7 @@ public class Schema {
     @JsProperty
     public String type;
     @JsProperty
-    String format;
+    public String format;
     @JsProperty
     public String[] required;
     @JsProperty

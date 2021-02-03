@@ -1,10 +1,46 @@
-.body{
+.body {
   background-color: #3C3F41;
   color: white;
   font-family: Arial, sans-serif;
   font-size: small;
   margin: 8px;
 }
-.link{
+
+.link {
   color: #5F96BA;
+}
+
+.cssString {
+  color: green;
+}
+
+.cssNumber {
+  color: darkorange;
+}
+
+.cssBoolean {
+  color: blue;
+}
+
+.cssNull {
+  color: magenta;
+}
+
+.cssKey {
+  color: red;
+}
+
+.cssTable {
+  background-color: #a0a0a0;
+  margin: 10px 0px;
+  width: 100%;
+  border: 0px;
+}
+
+.cssTable td {
+  padding: 10px;
+}
+
+.pre {
+  font-family: 'Anonymous Pro', sans-serif;
 }

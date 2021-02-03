@@ -1,5 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:c="urn:import:cn.mapway.openapi.viewer.client.component"
 >
     <ui:style>
         .test {
@@ -67,12 +68,25 @@
             border: solid 1pt white;
             vertical-align: middle;
         }
+
+        .jsonp {
+            padding-left: 30px;
+            border: solid 1pt sandybrown;
+            border-radius: 5px;
+            margin: 5px 0px 5px 0px;
+        }
+
+        .jsono {
+            padding-left: 30px;
+            border: solid 1pt slategray;
+            border-radius: 5px;
+            margin: 5px 0px 5px 0px;
+        }
     </ui:style>
     <g:ScrollPanel>
         <g:HTMLPanel styleName="{style.test}">
             <g:HorizontalPanel width="100%">
                 <g:Label ui:field="lbTitle" styleName="{style.stitle}"></g:Label>
-
                 <g:cell horizontalAlignment="right">
                     <g:HorizontalPanel verticalAlignment="middle">
                         <g:Label styleName="{style.box} {style.inbg}"></g:Label>
@@ -82,20 +96,16 @@
                     </g:HorizontalPanel>
                 </g:cell>
             </g:HorizontalPanel>
-
             <g:HorizontalPanel verticalAlignment="middle" spacing="4">
                 <g:Image width="16px" height="16px" ui:field="imgMethod"></g:Image>
                 <g:Label ui:field="lbURL" styleName="{style.ull}"></g:Label>
             </g:HorizontalPanel>
-
             <g:HTML ui:field="lbDescription" styleName="{style.desc}"></g:HTML>
-
             <g:FlexTable ui:field="tableParameters"></g:FlexTable>
-
             <g:HTMLPanel ui:field="htmlRequest" styleName="{style.reqp} "></g:HTMLPanel>
+            <c:JsonPanel ui:field="jsonInput" styleName="{style.jsonp}"></c:JsonPanel>
             <g:HTMLPanel ui:field="htmlResponse" styleName="{style.resp}"></g:HTMLPanel>
-
-
+            <c:JsonPanel ui:field="jsonOutput" styleName="{style.jsono}"></c:JsonPanel>
             <g:HTMLPanel ui:field="htmlAllSchema" styleName="{style.allSchema}"></g:HTMLPanel>
         </g:HTMLPanel>
     </g:ScrollPanel>
