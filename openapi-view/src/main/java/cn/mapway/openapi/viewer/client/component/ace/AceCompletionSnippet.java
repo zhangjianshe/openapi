@@ -133,11 +133,11 @@ public class AceCompletionSnippet extends AceCompletion {
 	 */
 	native JavaScriptObject toJsObject() /*-{
 		return {
-			caption: this.@cn.mapway.document.ui.client.component.ace.AceCompletionSnippet::caption,
-			snippet: this.@cn.mapway.document.ui.client.component.ace.AceCompletionSnippet::snippet,
-			score: this.@cn.mapway.document.ui.client.component.ace.AceCompletionSnippet::score,
-			meta: this.@cn.mapway.document.ui.client.component.ace.AceCompletionSnippet::meta,
-			aceGwtHtmlTooltip: this.@cn.mapway.document.ui.client.component.ace.AceCompletionSnippet::tooltip
+			caption: this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionSnippet::caption,
+			snippet: this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionSnippet::snippet,
+			score: this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionSnippet::score,
+			meta: this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionSnippet::meta,
+			aceGwtHtmlTooltip: this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionSnippet::tooltip
 		};
 	}-*/;
 }

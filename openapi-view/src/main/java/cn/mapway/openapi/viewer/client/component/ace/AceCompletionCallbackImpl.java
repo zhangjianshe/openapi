@@ -46,7 +46,7 @@ class AceCompletionCallbackImpl implements AceCompletionCallback {
 	}
 	
 	private native void doInvokeWithCompletions(JsArray<JavaScriptObject> jsProposals) /*-{
-		var callback = this.@cn.mapway.document.ui.client.component.ace.AceCompletionCallbackImpl::jsCallback;
+		var callback = this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionCallbackImpl::jsCallback;
 		callback(null, jsProposals);
 	}-*/;
 }

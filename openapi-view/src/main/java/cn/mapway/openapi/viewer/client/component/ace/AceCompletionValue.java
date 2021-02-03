@@ -101,11 +101,11 @@ public class AceCompletionValue extends AceCompletion {
 		
 		
 			return {
-				caption: this.@cn.mapway.document.ui.client.component.ace.AceCompletionValue::caption,
-				value: this.@cn.mapway.document.ui.client.component.ace.AceCompletionValue::value,
-				score: this.@cn.mapway.document.ui.client.component.ace.AceCompletionValue::score,
-				meta: this.@cn.mapway.document.ui.client.component.ace.AceCompletionValue::meta,
-			    aceGwtHtmlTooltip: this.@cn.mapway.document.ui.client.component.ace.AceCompletionValue::tooltip
+				caption: this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionValue::caption,
+				value: this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionValue::value,
+				score: this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionValue::score,
+				meta: this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionValue::meta,
+			    aceGwtHtmlTooltip: this.@cn.mapway.openapi.viewer.client.component.ace.AceCompletionValue::tooltip
 			};
 
 	}-*/;

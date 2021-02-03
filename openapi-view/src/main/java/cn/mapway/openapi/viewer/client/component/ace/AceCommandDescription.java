@@ -199,29 +199,29 @@ public class AceCommandDescription {
 	 */
 	public static native AceCommandDescription fromJavaScript(JavaScriptObject obj) /*-{
 		var name = obj.name;
-		var exec = @cn.mapway.document.ui.client.component.ace.AceCommandDescription::createJavaScriptWrapper(Ljava/lang/Object;)(obj.exec);
-		var ret = @cn.mapway.document.ui.client.component.ace.AceCommandDescription::new(Ljava/lang/String;Lcn/mapway/document/ui/client/component/ace/AceCommandDescription$ExecAction;)(name, exec);
-		var bindKey = @cn.mapway.document.ui.client.component.ace.AceCommandDescription.KeyBinding::fromJavaScript(Ljava/lang/Object;)(obj.bindKey);
+		var exec = @cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::createJavaScriptWrapper(Ljava/lang/Object;)(obj.exec);
+		var ret = @cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::new(Ljava/lang/String;Lcn/mapway/openapi/viewer/client/component/ace/AceCommandDescription$ExecAction;)(name, exec);
+		var bindKey = @cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.KeyBinding::fromJavaScript(Ljava/lang/Object;)(obj.bindKey);
 		if (bindKey)
-			ret.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::withBindKey(Lcn/mapway/document/ui/client/component/ace/AceCommandDescription$KeyBinding;)(bindKey);
+			ret.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::withBindKey(Lcn/mapway/openapi/viewer/client/component/ace/AceCommandDescription$KeyBinding;)(bindKey);
 		var readOnly = obj.readOnly;
 		if (readOnly)
-			ret.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::withReadOnly(Z)(readOnly);
+			ret.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::withReadOnly(Z)(readOnly);
 		var passEvent = obj.passEvent;
 		if (passEvent)
-			ret.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::withPassEvent(Z)(passEvent);
-		var scrollIntoView = @cn.mapway.document.ui.client.component.ace.AceCommandDescription.ScrollIntoView::fromString(Ljava/lang/String;)(obj.scrollIntoView);
+			ret.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::withPassEvent(Z)(passEvent);
+		var scrollIntoView = @cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.ScrollIntoView::fromString(Ljava/lang/String;)(obj.scrollIntoView);
 		if (scrollIntoView)
-			ret.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::withScrollIntoView(Lcn/mapway/document/ui/client/component/ace/AceCommandDescription$ScrollIntoView;)(scrollIntoView);
+			ret.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::withScrollIntoView(Lcn/mapway/openapi/viewer/client/component/ace/AceCommandDescription$ScrollIntoView;)(scrollIntoView);
 		var objMultiSelectAction = obj.multiSelectAction;
 		var multiSelectAction = null;
 		if (typeof objMultiSelectAction === "string")
-			multiSelectAction = @cn.mapway.document.ui.client.component.ace.AceCommandDescription.MultiSelectAction::fromString(Ljava/lang/String;)(objMultiSelectAction);
+			multiSelectAction = @cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.MultiSelectAction::fromString(Ljava/lang/String;)(objMultiSelectAction);
 		if (multiSelectAction)
-			ret.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::withMultiSelectAction(Lcn/mapway/document/ui/client/component/ace/AceCommandDescription$MultiSelectAction;)(multiSelectAction);
+			ret.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::withMultiSelectAction(Lcn/mapway/openapi/viewer/client/component/ace/AceCommandDescription$MultiSelectAction;)(multiSelectAction);
 		var aceCommandGroup = obj.aceCommandGroup;
 		if (aceCommandGroup)
-			ret.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::withAceCommandGroup(Ljava/lang/String;)(aceCommandGroup);
+			ret.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::withAceCommandGroup(Ljava/lang/String;)(aceCommandGroup);
 		return ret;
 	}-*/;
 
@@ -240,7 +240,7 @@ public class AceCommandDescription {
 	}
 	
 	private static native Object invokeJavaScriptCommand(Object jsFunction, AceEditor javaWrapper) /*-{
-		var jsEditor = javaWrapper.@cn.mapway.document.ui.client.component.ace.AceEditor::editor;
+		var jsEditor = javaWrapper.@cn.mapway.openapi.viewer.client.component.ace.AceEditor::editor;
 		return jsFunction(jsEditor);
 	}-*/;
 
@@ -251,27 +251,27 @@ public class AceCommandDescription {
 	 */
 	public native JavaScriptObject toJavaScript(AceEditor editor) /*-{
 		var ret = {};
-		ret['name'] = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::name;
-		var javaExec = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::exec;
+		ret['name'] = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::name;
+		var javaExec = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::exec;
 		ret['exec'] = function() {
-			javaExec.@cn.mapway.document.ui.client.component.ace.AceCommandDescription.ExecAction::exec(Lcn/mapway/document/ui/client/component/ace/AceEditor;)(editor);
+			javaExec.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.ExecAction::exec(Lcn/mapway/openapi/viewer/client/component/ace/AceEditor;)(editor);
 		};
-		var bindKey = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::bindKey;
+		var bindKey = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::bindKey;
 		if (bindKey)
-			ret['bindKey'] = bindKey.@cn.mapway.document.ui.client.component.ace.AceCommandDescription.KeyBinding::toJavaScript()();
-		var readOnly = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::readOnly;
+			ret['bindKey'] = bindKey.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.KeyBinding::toJavaScript()();
+		var readOnly = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::readOnly;
 		if (readOnly)
 			ret['readOnly'] = readOnly;
-		var passEvent = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::passEvent;
+		var passEvent = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::passEvent;
 		if (passEvent) 
 			ret['passEvent'] = passEvent;
-		var scrollIntoView = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::scrollIntoView;
+		var scrollIntoView = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::scrollIntoView;
 		if (scrollIntoView)
-			ret['scrollIntoView'] = scrollIntoView.@cn.mapway.document.ui.client.component.ace.AceCommandDescription.ScrollIntoView::name()();
-		var multiSelectAction = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::multiSelectAction;
+			ret['scrollIntoView'] = scrollIntoView.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.ScrollIntoView::name()();
+		var multiSelectAction = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::multiSelectAction;
 		if (multiSelectAction)
-			ret['multiSelectAction'] = multiSelectAction.@cn.mapway.document.ui.client.component.ace.AceCommandDescription.MultiSelectAction::name()();
-		var aceCommandGroup = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription::aceCommandGroup;
+			ret['multiSelectAction'] = multiSelectAction.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.MultiSelectAction::name()();
+		var aceCommandGroup = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription::aceCommandGroup;
 		if (aceCommandGroup)
 			ret['aceCommandGroup'] = aceCommandGroup;
 		return ret;
@@ -329,16 +329,16 @@ public class AceCommandDescription {
 			if (!obj)
 				return null;
 			if (typeof obj === "string")
-				return @cn.mapway.document.ui.client.component.ace.AceCommandDescription.KeyBinding::new(Ljava/lang/String;)(obj);
-			return @cn.mapway.document.ui.client.component.ace.AceCommandDescription.KeyBinding::new(Ljava/lang/String;Ljava/lang/String;)(obj.win, obj.mac);
+				return @cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.KeyBinding::new(Ljava/lang/String;)(obj);
+			return @cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.KeyBinding::new(Ljava/lang/String;Ljava/lang/String;)(obj.win, obj.mac);
 		}-*/;
 
 		private native Object toJavaScript() /*-{
-			var ret = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription.KeyBinding::allPlatforms;
+			var ret = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.KeyBinding::allPlatforms;
 			if (ret)
 				return ret;
-			var win = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription.KeyBinding::exceptMac;
-			var mac = this.@cn.mapway.document.ui.client.component.ace.AceCommandDescription.KeyBinding::mac;
+			var win = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.KeyBinding::exceptMac;
+			var mac = this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandDescription.KeyBinding::mac;
 			return {win: win, mac: mac};
 		}-*/;
 	}

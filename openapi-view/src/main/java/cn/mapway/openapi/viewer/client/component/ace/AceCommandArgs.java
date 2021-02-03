@@ -36,7 +36,7 @@ public class AceCommandArgs {
 	 * @return AceCommandArgs
 	 */
 	public native AceCommandArgs with(String argKey, String argValue) /*-{
-		this.@cn.mapway.document.ui.client.component.ace.AceCommandArgs::value[argKey] = argValue;
+		this.@cn.mapway.openapi.viewer.client.component.ace.AceCommandArgs::value[argKey] = argValue;
 		return this;
 	}-*/;
 	

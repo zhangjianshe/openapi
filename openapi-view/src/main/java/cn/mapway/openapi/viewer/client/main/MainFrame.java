@@ -31,8 +31,8 @@ public class MainFrame extends Composite {
     private final SelectionHandler<Operation> operationViewHandler = new SelectionHandler<Operation>() {
         @Override
         public void onSelection(SelectionEvent<Operation> event) {
-            sureTestDialogBox().getTestFrame().parse(event.getSelectedItem());
-            testDialogBox.center();
+            sureTestDialogBox().center();
+            testDialogBox.getTestFrame().parse(event.getSelectedItem());
         }
     };
     OperationList operationList;
@@ -85,6 +85,7 @@ public class MainFrame extends Composite {
     TextBoxEx txtSearch;
     @UiField
     Link link;
+
     public MainFrame() {
         initWidget(ourUiBinder.createAndBindUi(this));
         apiTree.addSelectionHandler(treeSelectedHandler);

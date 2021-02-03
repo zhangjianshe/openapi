@@ -78,8 +78,8 @@ public class AceEditorCursorPosition {
 	 */
 	public native JavaScriptObject toJsObject() /*-{
 		return {
-			row: this.@cn.mapway.document.ui.client.component.ace.AceEditorCursorPosition::row,
-			column: this.@cn.mapway.document.ui.client.component.ace.AceEditorCursorPosition::column
+			row: this.@cn.mapway.openapi.viewer.client.component.ace.AceEditorCursorPosition::row,
+			column: this.@cn.mapway.openapi.viewer.client.component.ace.AceEditorCursorPosition::column
 		};
 	}-*/;
 }

@@ -1,5 +1,7 @@
 package cn.mapway.openapi.viewer.client.main.test;
 
+import cn.mapway.openapi.viewer.client.component.ace.AceEditor;
+import cn.mapway.openapi.viewer.client.component.ace.AceEditorMode;
 import cn.mapway.openapi.viewer.client.main.MainFrame;
 import cn.mapway.openapi.viewer.client.resource.MainResource;
 import cn.mapway.openapi.viewer.client.specification.MediaType;
@@ -41,20 +43,15 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
     @UiField
     Image imgMethod;
     @UiField
-    TextArea editor;
+    AceEditor editor;
     @UiField
-    TextArea result;
+    AceEditor result;
     @UiField
     Image imgLoadding;
     private boolean initialize = false;
 
     public TestFrame() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        int width = RootLayoutPanel.get().getOffsetWidth();
-        int height = RootLayoutPanel.get().getOffsetHeight();
-
-        this.setHeight(((height - 100) / 2) + "px");
-        this.setWidth(((width - 100) / 2) + "px");
         imgLoadding.setUrl(MainResource.INSTANCE.loading().getSafeUri());
     }
 
@@ -145,17 +142,16 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
 
     private void initJsonEditor() {
         if (initialize == false) {
-//            editor.startEditor();
-//            editor.setMode(AceEditorMode.JSON);
-//            editor.setShowPrintMargin(false);
-//            editor.setFontSize(16);
-//
-//            result.startEditor();
-//            result.setMode(AceEditorMode.JSON);
-//            result.setShowPrintMargin(false);
-//            result.setFontSize(16);
-//            result.setReadOnly(true);
+            editor.startEditor();
+            editor.setMode(AceEditorMode.JSON);
+            editor.setShowPrintMargin(false);
+            editor.setFontSize(16);
 
+            result.startEditor();
+            result.setMode(AceEditorMode.JSON);
+            result.setShowPrintMargin(false);
+            result.setFontSize(16);
+            result.setReadOnly(true);
             initialize = true;
         }
     }
