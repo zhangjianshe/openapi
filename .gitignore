@@ -4,3 +4,4 @@
 *.jar
 gwt-unitCache/
 jsviewer/
+**/*.iml

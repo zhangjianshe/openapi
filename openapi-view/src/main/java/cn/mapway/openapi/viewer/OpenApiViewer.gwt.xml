@@ -1,6 +1,6 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.8.0//EN"
-        "http://gwtproject.org/doctype/2.8.0/gwt-module.dtd">
-<module>
+        "http://www.gwtproject.org/doctype/2.9.0/gwt-module.dtd">
+<module rename-to="jsviewer">
     <inherits name='com.google.gwt.user.User'/>
     <inherits name="com.google.gwt.resources.Resources" />
     <set-configuration-property name="CssResource.enableGss" value="true"/>

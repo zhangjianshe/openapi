@@ -26,7 +26,7 @@ public class MapwayOpenApiWebMvcConfig implements WebMvcConfigurer {
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         String baseUrl = StringUtils.trimTrailingCharacter(this.baseUrl, '/');
-        registry.addResourceHandler(new String[]{baseUrl + "/**"}).addResourceLocations(new String[]{"classpath:/META-INF/viewer/"}).resourceChain(false);
+        registry.addResourceHandler(new String[]{baseUrl + "/**"}).addResourceLocations(new String[]{"classpath:/META-INF/jsviewer/"}).resourceChain(false);
     }
 
     public void addViewControllers(ViewControllerRegistry registry) {

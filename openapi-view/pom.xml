@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -37,7 +37,6 @@
             <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -62,15 +61,14 @@
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
-            <version>2.8.2</version>
+            <version>2.9.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
-            <version>2.8.2</version>
+            <version>2.9.0</version>
         </dependency>
     </dependencies>
-
     <profiles>
         <profile>
             <id>dev</id>
@@ -104,7 +102,6 @@
         </profile>
         <profile>
             <id>release</id>
-
             <build>
                 <plugins>
                     <plugin>
@@ -122,7 +119,6 @@
             <id>code</id>
             <build>
                 <plugins>
-
                     <!-- GWT编译项目中的模块 -->
                     <plugin>
                         <groupId>net.ltgt.gwt.maven</groupId>
@@ -141,23 +137,8 @@
                             </systemProperties>
                         </configuration>
                     </plugin>
-
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                        <configuration>
-                            <excludes>
-                                <exclude>
-                                    <groupId>org.projectlombok</groupId>
-                                    <artifactId>lombok</artifactId>
-                                </exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
-
-
 </project>

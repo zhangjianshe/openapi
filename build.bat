@@ -1,1 +1,1 @@
-mvn -pl openapi-view clean compile gwt:compile package
+mvn -pl openapi-view clean compile gwt:compile package -Pcode
