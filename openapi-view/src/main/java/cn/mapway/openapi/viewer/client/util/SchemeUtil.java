@@ -147,6 +147,14 @@ public class SchemeUtil {
         return json;
     }
 
+    public final static native JavaScriptObject castTo(String data)/*-{
+        return data;
+    }-*/;
+
+    public final static String format(String json) {
+        return format(castTo(json));
+    }
+
     public final native static String format(JavaScriptObject json)/*-{
         var reg = null,
             formatted = '',

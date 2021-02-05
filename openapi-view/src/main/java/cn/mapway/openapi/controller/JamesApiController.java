@@ -2,7 +2,10 @@ package cn.mapway.openapi.controller;
 
 import cn.mapway.openapi.controller.model.EastTaskRequest;
 import cn.mapway.openapi.controller.model.EastTaskResponse;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Extension;
+import io.swagger.annotations.ExtensionProperty;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,9 +44,14 @@ public class JamesApiController {
 
     @ApiOperation(value = "来各位领导和全体老师对学校德育", tags = {"不可能"},
             notes = "感谢一年来各位领导和全体老师对学校德育处工作的支持。最后祝各位领导和老师们身体健康,阖家幸福, 万事如意，并预祝您能度过一个平安、快乐、文明、祥和、有意义的春节和假期。\n")
-    @RequestMapping(value = "/tasks/find2", method = RequestMethod.POST)
+    @RequestMapping(value = "/tasks/find2/{code}/{age}", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    EastTaskResponse taskFind2(@RequestBody EastTaskRequest request) {
-        return new EastTaskResponse();
+    EastTaskResponse taskFind2(
+            @PathVariable("code") String code,
+            @PathVariable("age") Integer age
+    ) {
+        EastTaskResponse eastTaskResponse = new EastTaskResponse();
+        eastTaskResponse.setName(code);
+        return eastTaskResponse;
     }
 }

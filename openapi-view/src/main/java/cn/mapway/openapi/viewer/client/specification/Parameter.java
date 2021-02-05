@@ -7,15 +7,14 @@ import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
 
-import java.util.Map;
-
 /**
  * Parameter
  *
  * @author zhangjianshe@gmail.com
  */
-@JsType(isNative = true, namespace = JsPackage.GLOBAL,name = "Object")
+@JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
 public class Parameter {
+
     @JsProperty
     public String name;
     @JsProperty
@@ -23,37 +22,39 @@ public class Parameter {
     @JsProperty
     public String description;
     @JsProperty
+    public String style;
+    @JsProperty
+    public JavaScriptObject example;
+    @JsProperty
+    public MapObject<Example> examples;
+    /**
+     * 自定义的参数 用于保存用户输入的数值
+     */
+    @JsProperty
+    public String pvalue;
+    @JsProperty
     private Boolean required;
-
     @JsProperty
     private Boolean explode;
-
-    @JsOverlay
-    public final Boolean isRequired()
-    {
-        return required==null || required==true;
-    }
-    @JsProperty
-    public String style;
-
     /**
      * schema  和 content 互斥
      */
     @JsProperty
     private Schema schema;
-
     @JsProperty
     private MapObject<MediaType> content;
-
-    @JsProperty
-    public JavaScriptObject example;
-
-    @JsProperty
-    public MapObject<Example> examples;
-
-
     @JsProperty
     private String $ref;
+
+    @JsOverlay
+    public final String getActualValue() {
+        return pvalue;
+    }
+
+    @JsOverlay
+    public final Boolean isRequired() {
+        return required == null || required == true;
+    }
 
     @JsOverlay
     public final Parameter resolve() {
@@ -70,17 +71,14 @@ public class Parameter {
     }
 
     @JsOverlay
-    public final String getType()
-    {
-        if(schema==null)
-        {
+    public final String getType() {
+        if (schema == null) {
             return "";
         }
-        String type= schema.resolve().type;
+        String type = schema.resolve().type;
 
-        if(explode!=null && explode)
-        {
-            return type+"[]";
+        if (explode != null && explode) {
+            return type + "[]";
         }
         return type;
     }

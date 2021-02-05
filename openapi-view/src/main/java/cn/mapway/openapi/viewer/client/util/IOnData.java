@@ -1,5 +1,7 @@
 package cn.mapway.openapi.viewer.client.util;
 
+import cn.mapway.openapi.viewer.client.util.xhr.DataType;
+
 /**
  * The Interface IOnData.
  *
@@ -13,7 +15,7 @@ public interface IOnData<T> {
      * @param url   the url
      * @param error the error
      */
-     void onError(String url, String error);
+    void onError(String url,  DataType dataType, String error);
 
     /**
      * On success.
@@ -21,5 +23,5 @@ public interface IOnData<T> {
      * @param url  the url
      * @param data the data
      */
-     void onSuccess(String url, T data);
+    void onSuccess(String url, DataType dataType, T data);
 }

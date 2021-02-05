@@ -1,6 +1,7 @@
 package cn.mapway.openapi.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -8,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-
+@ApiModel("接口请求参数")
 public class EastTaskRequest {
     @ApiModelProperty(value = "代码编号", required = true, notes = "这里填写说明", example = "12345")
     Integer code;

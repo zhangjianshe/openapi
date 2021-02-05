@@ -20,6 +20,18 @@ public class JsonPanel extends HTML implements RequiresResize {
     public JsonPanel() {
     }
 
+    /**
+     * Sets the json.
+     *
+     * @param jsonString the new json
+     */
+    public void setJsonString(String jsonString) {
+        String json = SchemeUtil.format(jsonString);
+        MainCss css = MainResource.INSTANCE.css();
+        String html = highlighted(json, css.cssNumber(), "variable",
+                css.cssString(), css.cssBoolean(), css.cssNull());
+        this.setHTML("<pre class='" + css.pre() + "'>" + html + "</pre>");
+    }
 
     /**
      * Sets the json.
@@ -51,6 +63,26 @@ public class JsonPanel extends HTML implements RequiresResize {
         String html = highlighted(json, css.cssNumber(), "variable",
                 css.cssString(), css.cssBoolean(), css.cssNull());
         this.setHTML("<pre class='" + css.pre() + "'>" + html + "</pre>");
+    }
+
+    /**
+     * Sets the string.
+     *
+     * @param text the new string
+     */
+    public void setTextString(String text) {
+
+        this.setHTML("<div>" + text + "</div>");
+    }
+
+    /**
+     * Sets the string.
+     *
+     * @param xml the new string
+     */
+    public void setXML(String xml) {
+
+        this.setHTML("<pre>" + xml + "</pre>");
     }
 
     /**
