@@ -6,8 +6,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Extension;
 import io.swagger.annotations.ExtensionProperty;
+import org.nutz.json.Json;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.net.Socket;
 
 
 @Api("Cont肉哦了人 的注解")
@@ -52,6 +56,38 @@ public class JamesApiController {
     ) {
         EastTaskResponse eastTaskResponse = new EastTaskResponse();
         eastTaskResponse.setName(code);
+        return eastTaskResponse;
+    }
+
+    @ApiOperation(value = "测试上传文件", tags = {"测试/上传文件"},
+            notes = "通过Form的形式上传文件")
+    @RequestMapping(value = "/tasks/uploadFile", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    EastTaskResponse taskFind2(
+            @RequestParam("resource") MultipartFile file,
+            @RequestParam("size") Integer size
+    ) {
+        EastTaskResponse eastTaskResponse = new EastTaskResponse();
+        eastTaskResponse.setName("code");
+        return eastTaskResponse;
+    }
+
+    @ApiOperation(value = "测试多种类型参数", tags = {"测试/上传文件"},
+            notes = "既有form，又有ResponseBody")
+    @RequestMapping(value = "/tasks/uploadFile2", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    EastTaskResponse taskFind2(
+            @RequestParam("resource") MultipartFile file,
+            @RequestParam("size") Integer size,
+            @RequestBody EastTaskRequest request
+    ) {
+
+        System.out.println("size:" + size);
+        System.out.println("request:" + Json.toJson(request));
+        System.out.println("file:" + file.getOriginalFilename());
+
+        EastTaskResponse eastTaskResponse = new EastTaskResponse();
+        eastTaskResponse.setName("code");
         return eastTaskResponse;
     }
 }

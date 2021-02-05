@@ -12,6 +12,7 @@ import cn.mapway.openapi.viewer.client.util.IOnData;
 import cn.mapway.openapi.viewer.client.util.RequestHead;
 import cn.mapway.openapi.viewer.client.util.SchemeUtil;
 import cn.mapway.openapi.viewer.client.util.xhr.DataType;
+import cn.mapway.openapi.viewer.client.util.xhr.FormData;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.*;
@@ -23,10 +24,14 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
+import sun.text.resources.FormatData;
 
 
 /**
  * TestFrame
+ * <p>
+ * multipart 请求格式  query参数通过 form形式传递
+ * json      请求格式  query参数通过 url形式传递
  *
  * @author zhangjianshe@gmail.com
  */
@@ -50,6 +55,8 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
     DockLayoutPanel dockParameter;
     @UiField
     SplitLayoutPanel resultPanel;
+    @UiField
+    ListBox ddlRequestContentType;
     ParameterListEditor listEditor;
     Widget current;
     private boolean initialize = false;
@@ -57,6 +64,50 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
         @Override
         public void onValueChange(ValueChangeEvent<Parameter> event) {
             rerenderUrl();
+        }
+    };
+    private IOnData<String> httpHandler = new IOnData<String>() {
+        @Override
+        public void onError(String url, DataType dataType, String error) {
+            switch (dataType) {
+                case DATA_TYPE_TEXT:
+                    resultJson.setTextString(error);
+                    break;
+                case DATA_TYPE_HTML:
+                    resultJson.setHTML(error);
+                    break;
+                case DATA_TYPE_JSON:
+                    resultJson.setJson(new JSONString(error));
+                    break;
+                case DATA_TYPE_XML:
+
+                    resultJson.setXML(error);
+                default:
+                    resultJson.setTextString(error);
+            }
+
+            imgLoadding.setVisible(false);
+        }
+
+        @Override
+        public void onSuccess(String url, DataType dataType, String data) {
+            switch (dataType) {
+                case DATA_TYPE_TEXT:
+                    resultJson.setTextString(data);
+                    break;
+                case DATA_TYPE_HTML:
+                    resultJson.setHTML(data);
+                    break;
+                case DATA_TYPE_JSON:
+                    resultJson.setJsonString(data);
+                    break;
+                case DATA_TYPE_XML:
+
+                    resultJson.setXML(data);
+                default:
+                    resultJson.setTextString(data);
+            }
+            imgLoadding.setVisible(false);
         }
     };
 
@@ -69,13 +120,14 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
     /**
      * 根据路径参数 更新URL地址
      */
-    private void rerenderUrl() {
+    private rerenderUrl() {
         String templateUrl = txtUrl.getTitle();
 
         if (mOperation.parameters == null) {
             return;
         }
         StringBuilder sb = new StringBuilder();
+
         for (Parameter p : mOperation.parameters) {
             String v = "";
             if (p.pvalue == null) {
@@ -98,11 +150,13 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
                     templateUrl = templateUrl.replaceAll(pattern, v);
                 }
             }
-            if (p.in.equals("query")) {
-                if (sb.length() > 0) {
-                    sb.append("&");
+            if (ddlRequestContentType.getSelectedIndex() == 0) {
+                if (p.in.equals("query")) {
+                    if (sb.length() > 0) {
+                        sb.append("&");
+                    }
+                    sb.append(p.name).append("=").append(v);
                 }
-                sb.append(p.name).append("=").append(v);
             }
         }
         if (sb.length() > 0) {
@@ -166,65 +220,44 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
 
         String path = txtUrl.getText();
 
+        // 0 JSON 1 form
+        int index = ddlRequestContentType.getSelectedIndex();
+
+        FormData formData = new FormData();
+
         RequestHead requestHead = new RequestHead();
         if (mOperation.parameters != null) {
             for (int i = 0; i < mOperation.parameters.length; i++) {
                 Parameter parameter = mOperation.parameters[i];
                 if (parameter.in.equals("header")) {
                     requestHead.put(parameter.name, parameter.getActualValue());
+                } else if (parameter.in.equals("query")) {
+                    if (index == 0) {
+                        // JSON 格式 数据需要添加到URL
+
+                    } else {
+                        if (parameter.style != null && parameter.style.equals("binary")) {
+                            //文件
+                        } else {
+                            formData.append(parameter.name, parameter.getActualValue());
+                        }
+                    }
                 }
             }
         }
 
         requestHead.jsonContent();
-        Https.send(path, requestHead, editor.getValue(), imgMethod.getAltText(), new IOnData<String>() {
-            @Override
-            public void onError(String url, DataType dataType, String error) {
-                switch (dataType) {
-                    case DATA_TYPE_TEXT:
-                        resultJson.setTextString(error);
-                        break;
-                    case DATA_TYPE_HTML:
-                        resultJson.setHTML(error);
-                        break;
-                    case DATA_TYPE_JSON:
-                        resultJson.setJson(new JSONString(error));
-                        break;
-                    case DATA_TYPE_XML:
+        if (index == 0) {
+            // JSON
+            requestHead.jsonContent();
+            Https.send(path, requestHead, editor.getValue(), imgMethod.getAltText(), httpHandler);
+        } else {
+            requestHead.formContent();
+            Https.send(path, requestHead, formData, imgMethod.getAltText(), httpHandler);
 
-                        resultJson.setXML(error);
-                    default:
-                        resultJson.setTextString(error);
-                }
-
-                imgLoadding.setVisible(false);
-            }
-
-            @Override
-            public void onSuccess(String url, DataType dataType, String data) {
-                switch (dataType) {
-                    case DATA_TYPE_TEXT:
-                        resultJson.setTextString(data);
-                        break;
-                    case DATA_TYPE_HTML:
-                        resultJson.setHTML(data);
-                        break;
-                    case DATA_TYPE_JSON:
-                        resultJson.setJsonString(data);
-                        break;
-                    case DATA_TYPE_XML:
-
-                        resultJson.setXML(data);
-                    default:
-                        resultJson.setTextString(data);
-                }
-                imgLoadding.setVisible(false);
-            }
-        });
-
+        }
 
     }
-
 
     @UiHandler("btnPathVar")
     public void btnPathVarClick(ClickEvent event) {
@@ -236,10 +269,6 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
         sureParameterListEditor().parse(mOperation.parameters, "header");
     }
 
-    @UiHandler("btnFormVar")
-    public void btnFormVarClick(ClickEvent event) {
-        sureParameterListEditor().parse(mOperation.parameters, "form");
-    }
 
     @UiHandler("btnBodyVar")
     public void btnBodyVarClick(ClickEvent event) {

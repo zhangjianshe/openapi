@@ -46,8 +46,11 @@
                                 <g:Button styleName="btn" ui:field="btnPathVar">路径参数</g:Button>
                                 <g:Button styleName="btn" ui:field="btnHeadVar">HTTP头</g:Button>
                                 <g:Button styleName="btn" ui:field="btnQueryVar">Query值</g:Button>
-                                <g:Button styleName="btn" ui:field="btnFormVar">FORM表单</g:Button>
                                 <g:Button styleName="btn" ui:field="btnBodyVar">请求体</g:Button>
+                                <g:ListBox ui:field="ddlRequestContentType">
+                                    <g:item value="">JSON</g:item>
+                                    <g:item value="">表单</g:item>
+                                </g:ListBox>
                             </g:HorizontalPanel>
                         </g:north>
                         <g:center>
