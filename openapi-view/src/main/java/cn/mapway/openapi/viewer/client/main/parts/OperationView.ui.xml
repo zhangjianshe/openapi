@@ -72,14 +72,12 @@
         .jsonp {
             padding-left: 30px;
             border: solid 1pt sandybrown;
-            border-radius: 5px;
             margin: 5px 0px 5px 0px;
         }
 
         .jsono {
             padding-left: 30px;
             border: solid 1pt slategray;
-            border-radius: 5px;
             margin: 5px 0px 5px 0px;
         }
     </ui:style>

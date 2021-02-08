@@ -14,6 +14,8 @@ import cn.mapway.openapi.viewer.client.util.SchemeUtil;
 import cn.mapway.openapi.viewer.client.util.xhr.DataType;
 import cn.mapway.openapi.viewer.client.util.xhr.FormData;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.*;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -24,7 +26,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
-import sun.text.resources.FormatData;
 
 
 /**
@@ -50,15 +51,26 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
     @UiField
     JsonPanel resultJson;
     @UiField
-    Image imgLoadding;
+    Image imageLoading;
     @UiField
     DockLayoutPanel dockParameter;
     @UiField
     SplitLayoutPanel resultPanel;
     @UiField
     ListBox ddlRequestContentType;
+    @UiField
+    Button btnBodyVar;
+    @UiField
+    Button btnQueryVar;
     ParameterListEditor listEditor;
     Widget current;
+    private String mUrl;
+    private final ChangeHandler requestTypeChanged = new ChangeHandler() {
+        @Override
+        public void onChange(ChangeEvent event) {
+            changeRequestType();
+        }
+    };
     private boolean initialize = false;
     private ValueChangeHandler<Parameter> parameterValueChanged = new ValueChangeHandler<Parameter>() {
         @Override
@@ -69,6 +81,10 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
     private IOnData<String> httpHandler = new IOnData<String>() {
         @Override
         public void onError(String url, DataType dataType, String error) {
+            rendData(dataType, error);
+        }
+
+        private void rendData(DataType dataType, String error) {
             switch (dataType) {
                 case DATA_TYPE_TEXT:
                     resultJson.setTextString(error);
@@ -86,47 +102,33 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
                     resultJson.setTextString(error);
             }
 
-            imgLoadding.setVisible(false);
+            imageLoading.setVisible(false);
         }
 
         @Override
         public void onSuccess(String url, DataType dataType, String data) {
-            switch (dataType) {
-                case DATA_TYPE_TEXT:
-                    resultJson.setTextString(data);
-                    break;
-                case DATA_TYPE_HTML:
-                    resultJson.setHTML(data);
-                    break;
-                case DATA_TYPE_JSON:
-                    resultJson.setJsonString(data);
-                    break;
-                case DATA_TYPE_XML:
-
-                    resultJson.setXML(data);
-                default:
-                    resultJson.setTextString(data);
-            }
-            imgLoadding.setVisible(false);
+            rendData(dataType, data);
         }
     };
 
     public TestFrame() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        imgLoadding.setUrl(MainResource.INSTANCE.loading().getSafeUri());
+        imageLoading.setUrl(MainResource.INSTANCE.loading().getSafeUri());
         current = editor;
+        ddlRequestContentType.addChangeHandler(requestTypeChanged);
     }
 
     /**
      * 根据路径参数 更新URL地址
      */
-    private rerenderUrl() {
+    private void rerenderUrl() {
         String templateUrl = txtUrl.getTitle();
-
+        mUrl = txtUrl.getTitle();
         if (mOperation.parameters == null) {
             return;
         }
         StringBuilder sb = new StringBuilder();
+
 
         for (Parameter p : mOperation.parameters) {
             String v = "";
@@ -139,15 +141,18 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
             }
             if (p.in.equals("path")) {
                 if (v != null && v.length() > 0) {
-                    v = "<span class='inline-param'>" + v + "</span>";
+                    String strv = "<span class='inline-param'>" + v + "</span>";
                     //替换URL中参数值 ${code}  == v
                     String pattern = "{" + p.name + "}";
-                    templateUrl = templateUrl.replaceAll(pattern, v);
+                    templateUrl = templateUrl.replaceAll(pattern, strv);
+                    mUrl = mUrl.replaceAll(pattern, v);
+
                 } else {
-                    v = "<span class='inline-param-error'>" + p.name + "</span>";
+                    String strv = "<span class='inline-param-error'>" + p.name + "</span>";
                     //替换URL中参数值 ${code}  == v
                     String pattern = "{" + p.name + "}";
-                    templateUrl = templateUrl.replaceAll(pattern, v);
+                    templateUrl = templateUrl.replaceAll(pattern, strv);
+                    mUrl = mUrl.replaceAll(pattern, v);
                 }
             }
             if (ddlRequestContentType.getSelectedIndex() == 0) {
@@ -161,6 +166,7 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
         }
         if (sb.length() > 0) {
             templateUrl += "?" + sb.toString();
+            mUrl += "?" + sb.toString();
         }
         txtUrl.setHTML(templateUrl);
         //处理查询参数
@@ -169,7 +175,19 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
     public TestFrame parse(Operation operation) {
         mOperation = operation;
         fillCaption();
+        changeRequestType();
         return this;
+    }
+
+    private void changeRequestType() {
+        if (ddlRequestContentType.getSelectedIndex() == 0) {
+            btnBodyVar.setVisible(true);
+            btnBodyVar.click();
+        } else {
+            btnBodyVar.setVisible(false);
+            btnQueryVar.click();
+        }
+        rerenderUrl();
     }
 
     private void fillCaption() {
@@ -215,7 +233,7 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
     @UiHandler("btnTest")
     public void btnTestClick(ClickEvent event) {
         //测试代码
-        imgLoadding.setVisible(true);
+        imageLoading.setVisible(true);
         resultJson.setString("");
 
         String path = txtUrl.getText();

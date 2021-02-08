@@ -29,7 +29,7 @@
                 </g:cell>
                 <g:cell horizontalAlignment="right">
                     <g:HorizontalPanel horizontalAlignment="right" spacing="4">
-                        <g:Image ui:field="imgLoadding" visible="false" width="48px"
+                        <g:Image ui:field="imageLoading" visible="false" width="48px"
                                  height="30px"/>
                         <g:Button ui:field="btnTest" styleName="btnTest">测试</g:Button>
                         <g:Button ui:field="btnClose" styleName="btnClose">关闭</g:Button>
@@ -47,7 +47,7 @@
                                 <g:Button styleName="btn" ui:field="btnHeadVar">HTTP头</g:Button>
                                 <g:Button styleName="btn" ui:field="btnQueryVar">Query值</g:Button>
                                 <g:Button styleName="btn" ui:field="btnBodyVar">请求体</g:Button>
-                                <g:ListBox ui:field="ddlRequestContentType">
+                                <g:ListBox ui:field="ddlRequestContentType" >
                                     <g:item value="">JSON</g:item>
                                     <g:item value="">表单</g:item>
                                 </g:ListBox>
