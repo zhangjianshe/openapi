@@ -10,7 +10,7 @@ import com.google.gwt.resources.client.ImageResource;
  * 系统资源
  */
 public interface MainResource extends ClientBundle {
-    public static final MainResource INSTANCE = GWT.create(MainResource.class);
+    MainResource INSTANCE = GWT.create(MainResource.class);
 
     @Source("main.gss")
     MainCss css();
@@ -41,4 +41,11 @@ public interface MainResource extends ClientBundle {
 
     @Source("image/loadding.gif")
     ImageResource loading();
+
+    @Source("image/wrong.png")
+    ImageResource wrong();
+
+
+    @Source("image/right.png")
+    ImageResource right();
 }

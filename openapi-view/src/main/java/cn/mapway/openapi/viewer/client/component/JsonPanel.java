@@ -18,6 +18,7 @@ public class JsonPanel extends HTML implements RequiresResize {
      * Instantiates a new json panel.
      */
     public JsonPanel() {
+        setStyleName("html-panel");
     }
 
     /**

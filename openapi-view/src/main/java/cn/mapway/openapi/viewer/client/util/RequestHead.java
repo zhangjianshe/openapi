@@ -14,7 +14,7 @@ public class RequestHead extends HashMap<String, String> {
     }
 
     public RequestHead formContent() {
-        put("Content-Type", "multipart/form-data");
+      //  put("Content-Type", "multipart/form-data");
         return this;
     }
 }

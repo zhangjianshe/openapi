@@ -54,4 +54,5 @@ public interface MainCss extends CssResource {
     String pre();
 
     String cssTable();
+
 }

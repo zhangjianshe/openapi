@@ -89,7 +89,7 @@ body {
 }
 
 .gwt-DialogBox {
-    border: solid 1px #555555;;
+    border: solid 1px #f0f0f0;;
 }
 
 .gwt-DialogBox .Caption {
@@ -198,4 +198,8 @@ body {
  内阴影+圆角*/
 ::-webkit-scrollbar-thumb:HOVER {
     background-color: #666868;
+}
+
+.html-panel {
+    padding: 5px;
 }

@@ -33,9 +33,9 @@ public class Parameter {
     @JsProperty
     public String pvalue;
     @JsProperty
-    private Boolean required;
+    public Boolean required;
     @JsProperty
-    private Boolean explode;
+    public Boolean explode;
     /**
      * schema  和 content 互斥
      */
@@ -45,6 +45,19 @@ public class Parameter {
     private MapObject<MediaType> content;
     @JsProperty
     private String $ref;
+
+    /**
+     * 类型已经resolve过
+     *
+     * @return
+     */
+    @JsOverlay
+    public final Schema getSchema() {
+        if (schema != null) {
+            return schema.resolve();
+        }
+        return null;
+    }
 
     @JsOverlay
     public final String getActualValue() {

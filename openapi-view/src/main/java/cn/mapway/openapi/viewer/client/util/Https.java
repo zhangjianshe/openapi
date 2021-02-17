@@ -4,6 +4,7 @@ import cn.mapway.openapi.viewer.client.util.xhr.DataType;
 import cn.mapway.openapi.viewer.client.util.xhr.FormData;
 import cn.mapway.openapi.viewer.client.util.xhr.Function;
 import cn.mapway.openapi.viewer.client.util.xhr.XMLHttpRequest;
+import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.http.client.*;
 
 import java.util.Map;
@@ -80,10 +81,14 @@ public class Https {
                 header.entrySet()) {
             request.setRequestHeader(item.getKey(), item.getValue());
         }
-        if (data instanceof FormData) {
-            request.send((FormData) data);
-        } else {
-            request.send((String) data);
+        try {
+            if (data instanceof FormData) {
+                request.send((FormData) data);
+            } else {
+                request.send((String) data);
+            }
+        } catch (Exception e) {
+            handler.onError(url, DataType.DATA_TYPE_TEXT, e.getMessage());
         }
 
     }

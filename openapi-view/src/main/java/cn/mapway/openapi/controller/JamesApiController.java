@@ -6,12 +6,15 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Extension;
 import io.swagger.annotations.ExtensionProperty;
+import io.swagger.v3.oas.annotations.Operation;
 import org.nutz.json.Json;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Api("Cont肉哦了人 的注解")
@@ -38,9 +41,8 @@ public class JamesApiController {
     @ResponseBody
     EastTaskRequest taskFind3(@PathVariable("code") String code,
                               @RequestParam(value = "intValues") Integer[] intValues,
-                              @RequestParam(value = "count", required = true) Integer count,
-                              @RequestHeader(value = "X-ZIROOM_TOKEN") String ziroomToken,
-                              @RequestBody EastTaskRequest request
+                              @RequestParam(value = "count", required = true) Integer count
+
     ) {
         return new EastTaskRequest();
     }
@@ -59,12 +61,13 @@ public class JamesApiController {
         return eastTaskResponse;
     }
 
-    @ApiOperation(value = "测试上传文件", tags = {"测试/上传文件"},
-            notes = "通过Form的形式上传文件")
+    @Operation(summary = "测试上传文件", tags = {"测试/上传文件"},
+            description = "通过Form的形式上传文件")
     @RequestMapping(value = "/tasks/uploadFile", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     EastTaskResponse taskFind2(
             @RequestParam("resource") MultipartFile file,
+            @RequestParam("resource2") MultipartFile file2,
             @RequestParam("size") Integer size
     ) {
         EastTaskResponse eastTaskResponse = new EastTaskResponse();
@@ -89,5 +92,23 @@ public class JamesApiController {
         EastTaskResponse eastTaskResponse = new EastTaskResponse();
         eastTaskResponse.setName("code");
         return eastTaskResponse;
+    }
+
+    @ExceptionHandler(value = Exception.class)
+    @ResponseBody
+    public EastTaskResponse handleException(Exception e) {
+        EastTaskResponse r = new EastTaskResponse();
+        r.setName(e.getMessage());
+        return r;
+    }
+
+    /**
+     * @return
+     */
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String error(Exception e) {
+        Map<String, Object> r = new HashMap<>();
+        r.put("error", e.getMessage());
+        return Json.toJson(r);
     }
 }

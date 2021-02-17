@@ -152,6 +152,9 @@ public class SchemeUtil {
     }-*/;
 
     public final static String format(String json) {
+        if (json == null || json.length() == 0) {
+            return "{}";
+        }
         return format(castTo(json));
     }
 

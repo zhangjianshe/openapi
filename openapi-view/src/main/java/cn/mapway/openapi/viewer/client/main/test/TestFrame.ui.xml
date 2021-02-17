@@ -17,14 +17,22 @@
         .right {
             border-left: solid 1px #3C3F41;
         }
-    </ui:style>
+
+        .bar {
+            height: 35px;
+            overflow: hidden;
+
+        }</ui:style>
     <g:DockLayoutPanel width="900px" height="500px">
         <g:north size="35">
             <g:HorizontalPanel height="35px" width="100%" verticalAlignment="middle" styleName="{style.top}">
                 <g:cell>
                     <g:HorizontalPanel verticalAlignment="middle" height="35px" spacing="4">
                         <g:Image ui:field="imgMethod"></g:Image>
-                        <g:HTML ui:field="txtUrl" styleName="{style.url}"></g:HTML>
+                        <g:HorizontalPanel spacing="3">
+                            <g:HTML ui:field="txtUrl" styleName="{style.url}"></g:HTML>
+                            <g:Image ui:field="imgUrlChecker"></g:Image>
+                        </g:HorizontalPanel>
                     </g:HorizontalPanel>
                 </g:cell>
                 <g:cell horizontalAlignment="right">
@@ -42,14 +50,14 @@
                 <g:west size="430">
                     <g:DockLayoutPanel ui:field="dockParameter">
                         <g:north size="35">
-                            <g:HorizontalPanel>
+                            <g:HorizontalPanel height="35px" styleName="{style.bar}">
                                 <g:Button styleName="btn" ui:field="btnPathVar">路径参数</g:Button>
                                 <g:Button styleName="btn" ui:field="btnHeadVar">HTTP头</g:Button>
-                                <g:Button styleName="btn" ui:field="btnQueryVar">Query值</g:Button>
-                                <g:Button styleName="btn" ui:field="btnBodyVar">请求体</g:Button>
-                                <g:ListBox ui:field="ddlRequestContentType" >
+                                <g:Button styleName="btn" ui:field="btnQueryVar">FORM表单</g:Button>
+                                <g:Button styleName="btn" ui:field="btnBodyVar">JSON</g:Button>
+                                <g:ListBox ui:field="ddlRequestContentType">
                                     <g:item value="">JSON</g:item>
-                                    <g:item value="">表单</g:item>
+                                    <g:item value="">FORM表单</g:item>
                                 </g:ListBox>
                             </g:HorizontalPanel>
                         </g:north>
