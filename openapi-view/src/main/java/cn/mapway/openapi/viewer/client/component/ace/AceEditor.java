@@ -20,14 +20,9 @@
 
 package cn.mapway.openapi.viewer.client.component.ace;
 
-import cn.mapway.openapi.viewer.client.specification.MediaType;
-import cn.mapway.openapi.viewer.client.specification.RequestBody;
-import cn.mapway.openapi.viewer.client.specification.Schema;
-import cn.mapway.openapi.viewer.client.util.SchemeUtil;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.TakesValue;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -54,9 +49,9 @@ public class AceEditor extends Composite implements RequiresResize, HasText, Tak
 
     private JsArray<AceAnnotation> annotations = JavaScriptObject.createArray().cast();
 
-    private Element divElement;
+    private final Element divElement;
 
-    private HashMap<Integer, AceRange> markers = new HashMap<Integer, AceRange>();
+    private final HashMap<Integer, AceRange> markers = new HashMap<Integer, AceRange>();
 
     private AceSelection selection = null;
 
@@ -785,5 +780,5 @@ public class AceEditor extends Composite implements RequiresResize, HasText, Tak
         });
     }
 
-    
+
 }

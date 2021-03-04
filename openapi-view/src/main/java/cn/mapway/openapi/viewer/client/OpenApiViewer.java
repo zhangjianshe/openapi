@@ -37,8 +37,10 @@ public class OpenApiViewer implements EntryPoint {
             String fetchUrl = "";
             if (url != null && url.length() > 0) {
                 fetchUrl = url;
+            } else {
+                fetchUrl = "../v3/api-docs";
             }
-            Https.fetchString(fetchUrl + "../v3/api-docs", "", "", "get", new IOnData<String>() {
+            Https.fetchString(fetchUrl, "", "", "get", new IOnData<String>() {
                 @Override
                 public void onError(String url, DataType dt,
                                     String error) {

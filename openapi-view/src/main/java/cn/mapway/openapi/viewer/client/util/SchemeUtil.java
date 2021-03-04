@@ -55,20 +55,20 @@ public class SchemeUtil {
             object = new JSONString(v);
         } else if ("number".equals(s.type)) {
             Double v = 0.0;
-            if (!"".equals(s.type)) {
+            if (s.example!=null &&  !"".equals(s.example)) {
                 v = Double.parseDouble(s.example);
             }
             object = new JSONNumber(v);
         } else if ("boolean".equals(s.type)) {
             boolean v = true;
-            if (!"".equals(s.type)) {
+            if (s.example!=null && !"".equals(s.example)) {
                 v = Boolean.parseBoolean(s.example);
             }
             object = JSONBoolean.getInstance(v);
 
         } else if ("integer".equals(s.type)) {
             int v = 0;
-            if (!"".equals(s.example)) {
+            if (s.example!=null && !"".equals(s.example)) {
                 v = Integer.parseInt(s.example);
             }
             object = new JSONNumber(v);

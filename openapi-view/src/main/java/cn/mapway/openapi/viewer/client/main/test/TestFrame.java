@@ -3,6 +3,7 @@ package cn.mapway.openapi.viewer.client.main.test;
 import cn.mapway.openapi.viewer.client.component.JsonPanel;
 import cn.mapway.openapi.viewer.client.component.ace.AceEditor;
 import cn.mapway.openapi.viewer.client.component.ace.AceEditorMode;
+import cn.mapway.openapi.viewer.client.component.ace.AceEditorTheme;
 import cn.mapway.openapi.viewer.client.main.MainFrame;
 import cn.mapway.openapi.viewer.client.main.test.param.Para;
 import cn.mapway.openapi.viewer.client.main.test.param.ParaContainer;
@@ -21,7 +22,6 @@ import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.*;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -40,7 +40,7 @@ import com.google.gwt.user.client.ui.*;
  */
 public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
 
-    private static TestFrameUiBinder ourUiBinder = GWT.create(TestFrameUiBinder.class);
+    private static final TestFrameUiBinder ourUiBinder = GWT.create(TestFrameUiBinder.class);
     Operation mOperation;
     @UiField
     Button btnClose;
@@ -81,13 +81,13 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
         }
     };
     private boolean initialize = false;
-    private ValueChangeHandler<Para> parameterValueChanged = new ValueChangeHandler<Para>() {
+    private final ValueChangeHandler<Para> parameterValueChanged = new ValueChangeHandler<Para>() {
         @Override
         public void onValueChange(ValueChangeEvent<Para> event) {
             rerenderUrl();
         }
     };
-    private IOnData<String> httpHandler = new IOnData<String>() {
+    private final IOnData<String> httpHandler = new IOnData<String>() {
         @Override
         public void onError(String url, DataType dataType, String error) {
             rendData(dataType, error);
@@ -409,6 +409,7 @@ public class TestFrame extends Composite implements HasCloseHandlers<Boolean> {
             editor.setMode(AceEditorMode.JSON);
             editor.setShowPrintMargin(false);
             editor.setFontSize(16);
+            editor.setTheme(AceEditorTheme.IDLE_FINGERS);
 
             initialize = true;
         }
