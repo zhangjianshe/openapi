@@ -9,6 +9,5 @@
     <set-configuration-property name="CssResource.enableGss" value="true"/>
     <set-configuration-property name="CssResource.conversionMode" value="strict"/>
     <stylesheet src='OpenApiViewer.css'/>
-    <stylesheet src='idle.css'/>
     <entry-point class='cn.mapway.openapi.viewer.client.OpenApiViewer'/>
 </module>

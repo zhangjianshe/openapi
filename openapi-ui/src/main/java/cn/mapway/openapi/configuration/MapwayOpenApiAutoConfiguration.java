@@ -26,7 +26,7 @@ import org.springframework.util.StringUtils;
 )
 public class MapwayOpenApiAutoConfiguration {
     private static Logger log= LoggerFactory.getLogger(MapwayOpenApiWebMvcConfig.class);
-    @Value("${springfox.documentation.openapi-ui.base-url:}")
+    @Value("${springfox.documentation.openapi-ui.base-url}")
     private String openapiBaseUrl;
 
     public MapwayOpenApiAutoConfiguration() {
